@@ -16,7 +16,7 @@ typedef struct struct_text{
 typedef struct Personne
 {
 struct_img perso;
-int direction;
+int direction;//0:droite ,1:gauche , 2:up , 3:down
 int deplacement;
 double vitesse;
 Uint32 dt;
@@ -45,12 +45,23 @@ typedef struct minimap{
 
 
 
+void init_background(struct_img *background);
+
+void initPerso(Personne *p);
+void afficherPerso(Personne p,SDL_Surface *screen);
+void movePerso(Personne *p,background *bp);
+void saut(Personne *P,float dt, int possol,background *bp) ;
+
 void initmap(minimap * m);
 void afficherminimap(minimap m,SDL_Surface *screen);
 void Liberer (minimap * m);
 void MAJMinimap(SDL_Rect posJoueur,  minimap * m, SDL_Rect camera, int redimensionnement);
+void sauvgarder(Personne p,background b,char *nomfichier);
+void charger(Personne *p,background *b,char *nomfichier);
 SDL_Color  GetPixel(SDL_Surface *pSurface,int x,int y);
 int collisionPP(Personne *p, SDL_Surface *Masque,background bp);
 void init_maske(struct_img *maske);
 void animerMinimap(minimap *m);
 void calculnewtime(minimap *m);
+
+
